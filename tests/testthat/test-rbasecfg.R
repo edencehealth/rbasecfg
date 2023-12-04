@@ -3,9 +3,9 @@ test_that("basic functions work", {
   MyAppCfg <- R6::R6Class("MyAppCfg", # nolint: object_name_linter.
     inherit = BaseCfg,
     public = list(
-      width = opt(10, "integer", doc = "the width of a widget"),
-      height = opt(20, "integer", "the height of a widget"),
-      depth = opt(30, "integer", "the depth of a widget")
+      width = opt(default = 10, type = "integer", doc = "the width of a widget"),
+      height = opt(default = 20, type = "integer", doc = "the height of a widget"),
+      depth = opt(defulat = 30, type = "integer", doc = "the depth of a widget")
     )
   )
 
