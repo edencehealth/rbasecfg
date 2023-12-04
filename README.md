@@ -3,7 +3,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-`rbasecfg` is an R implementation of the [basecfg](https://github.com/edencehealth/basecfg) Python package. **It is currently a work in progress**.
+[`rbasecfg`](https://github.com/edencehealth/rbasecfg) is an R implementation of the [basecfg](https://github.com/edencehealth/basecfg) Python package. **It is currently under active development.**
 
 
 ## Installation
@@ -14,9 +14,9 @@ You can install the development version of rbasecfg like so:
 devtools::install_github("edencehealth/rbasecfg@v0")
 ```
 
-## Example
+## Usage
 
-This is a basic example which shows you how to solve a common problem:
+Here's a basic example of how you can define your application's configuration with `rbasecfg`:
 
 ``` r
 library(rbasecfg)
@@ -24,19 +24,20 @@ library(rbasecfg)
 MyAppCfg <- R6::R6Class("MyAppCfg",
   inherit = BaseCfg,
   public = list(
-    width = opt(10, "integer", doc = "the width of a widget"),
-    height = opt(20, "integer", "the height of a widget"),
-    depth = opt(30, "integer", "the depth of a widget")
+    width = opt(default = 10, type = "integer", doc = "the width of a widget"),
+    height = opt(default = 20, type = "integer", doc = "the height of a widget"),
+    depth = opt(defulat = 30, type = "integer", doc = "the depth of a widget")
   )
 )
 ```
 
-in the main program:
+In your main program:
+
 ```r
 cfg <- MyAppCfg$new()
 ```
 
-at runtime the following variables are automaticall populated from the defaults, from envvars, and from command-line arguments:
+At runtime, these variables are automatically populated from the defaults, environment variables, and command-line arguments:
 
 ```r
 cfg$depth
